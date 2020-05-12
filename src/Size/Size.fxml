@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="521.0" prefWidth="608.0" style="-fx-background-color: #f0ffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Size.SizeController">
+   <children>
+      <Label alignment="CENTER" layoutX="8.0" layoutY="34.0" prefHeight="21.0" prefWidth="150.0" text="Kūno svoris" AnchorPane.topAnchor="30.0" />
+      <Label alignment="CENTER" layoutX="12.0" layoutY="70.0" prefHeight="21.0" prefWidth="146.0" text="KMI" AnchorPane.topAnchor="70.0" />
+      <Label alignment="CENTER" layoutX="8.0" layoutY="110.0" prefHeight="21.0" prefWidth="146.0" text="Pečiai" AnchorPane.topAnchor="110.0" />
+      <Label alignment="CENTER" layoutX="10.0" layoutY="150.0" prefHeight="21.0" prefWidth="146.0" text="Krūtinė" AnchorPane.topAnchor="150.0" />
+      <Label alignment="CENTER" layoutX="10.0" layoutY="190.0" prefHeight="21.0" prefWidth="146.0" text="Dešinys bicepsas" />
+      <Label alignment="CENTER" layoutX="11.0" layoutY="230.0" prefHeight="21.0" prefWidth="146.0" text="Kairys bicepsas" />
+      <Label alignment="CENTER" layoutX="12.0" layoutY="270.0" text="Talijos plačiausia vieta" />
+      <Label alignment="CENTER" layoutX="10.0" layoutY="310.0" text="Talijos siauriausia vieta" />
+      <Label alignment="CENTER" layoutX="9.0" layoutY="390.0" prefHeight="21.0" prefWidth="146.0" text="Dešinė šlaunis" />
+      <Label alignment="CENTER" layoutX="9.0" layoutY="430.0" prefHeight="21.0" prefWidth="146.0" text="Kairė šlaunis" />
+      <Label alignment="CENTER" layoutX="9.0" layoutY="350.0" prefHeight="21.0" prefWidth="146.0" text="Sedmenys" />
+      <Label alignment="CENTER" layoutX="8.0" layoutY="470.0" prefHeight="21.0" prefWidth="146.0" text="Išsaugojimo data" />
+      <TextField fx:id="kg" layoutX="98.0" layoutY="25.0" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="25.0" />
+      <TextField fx:id="KMI" layoutX="98.0" layoutY="66.0" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="65.0" />
+      <TextField fx:id="shoulders" layoutX="98.0" layoutY="111.0" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="105.0" />
+      <TextField fx:id="chest" layoutX="98.0" layoutY="150.0" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="145.0" />
+      <TextField fx:id="rBiceps" layoutX="98.0" layoutY="192.0" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="185.0" />
+      <TextField fx:id="lBiceps" layoutX="98.0" layoutY="232.0" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="225.0" />
+      <TextField fx:id="waistB" layoutX="98.0" layoutY="202.0" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="265.0" />
+      <TextField fx:id="waistS" layoutX="98.0" layoutY="202.0" AnchorPane.leftAnchor="170.0" AnchorPane.topAnchor="305.0" />
+      <TextField fx:id="glutes" layoutX="170.0" layoutY="241.0" AnchorPane.topAnchor="345.0" />
+      <TextField fx:id="rThigh" layoutX="170.0" layoutY="393.0" AnchorPane.topAnchor="385.0" />
+      <TextField fx:id="lThigh" layoutX="170.0" layoutY="281.0" AnchorPane.topAnchor="425.0" />
+      <DatePicker fx:id="addDate" layoutX="170.0" layoutY="375.0" prefHeight="31.0" prefWidth="187.0" AnchorPane.topAnchor="465.0" />
+      <Button layoutX="453.0" layoutY="95.0" mnemonicParsing="false" onAction="#AddNewSize" text="Išsaugoti" />
+      <Button layoutX="452.0" layoutY="185.0" mnemonicParsing="false" onAction="#updateSize" text="Atnaujinti" />
+      <Button layoutX="451.0" layoutY="281.0" mnemonicParsing="false" onAction="#deleteSize" prefHeight="31.0" prefWidth="84.0" text="Ištrinti" />
+      <ComboBox fx:id="combo" layoutX="419.0" layoutY="385.0" onAction="#fillTextFieldSizeUpdate" onMouseClicked="#comboFill" prefWidth="150.0" />
+      <Label fx:id="clientID" layoutX="72.0" layoutY="494.0" text="Label" textFill="AZURE" />
+      <Label fx:id="idLabel" layoutX="17.0" layoutY="494.0" text="Label" textFill="AZURE" />
+      <Label fx:id="confirmation" alignment="CENTER" layoutX="370.0" layoutY="46.0" prefHeight="21.0" prefWidth="250.0" textFill="DODGERBLUE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="438.0" layoutY="361.0" text="Išsaugojimo data" />
+   </children>
+</AnchorPane>

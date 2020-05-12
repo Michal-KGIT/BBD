@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.web.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="419.0" prefWidth="1123.0" style="-fx-background-color: ebffd6;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dish.DishController">
+   <children>
+      <ComboBox fx:id="group" layoutX="63.0" layoutY="41.0" onAction="#fillCombo" prefHeight="31.0" prefWidth="187.0" promptText="Grupė" AnchorPane.leftAnchor="63.0" AnchorPane.topAnchor="40.0" />
+      <TextField fx:id="dish" layoutX="63.0" layoutY="88.0" promptText="Patiekalo pavadinimas" AnchorPane.topAnchor="90.0" />
+      <TextField fx:id="protein" layoutX="61.0" layoutY="135.0" promptText="Baltymų kiekis" AnchorPane.topAnchor="140.0" />
+      <TextField fx:id="fat" layoutX="61.0" layoutY="178.0" promptText="Riebalų kiekis" AnchorPane.topAnchor="190.0" />
+      <TextField fx:id="carb" layoutX="61.0" layoutY="221.0" promptText="Angliavandenių kiekis" AnchorPane.topAnchor="240.0" />
+      <TextField fx:id="kcal" layoutX="61.0" layoutY="264.0" promptText="Kalorijų kiekis" AnchorPane.topAnchor="290.0" />
+      <Button layoutX="63.0" layoutY="351.0" mnemonicParsing="false" onAction="#addDish" text="Pridėti" />
+      <Button layoutX="183.0" layoutY="351.0" mnemonicParsing="false" onAction="#clear" text="Išvalyti" />
+      <WebView fx:id="webView" layoutX="307.0" layoutY="13.0" prefHeight="392.0" prefWidth="802.0" />
+   </children>
+</AnchorPane>

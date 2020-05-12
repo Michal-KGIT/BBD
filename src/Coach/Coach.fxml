@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="752.0" prefWidth="1336.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Coach.CoachController">
+   <children>
+      <StackPane layoutX="261.0" layoutY="20.0" prefHeight="712.0" prefWidth="1070.0">
+         <children>
+            <GridPane fx:id="gpNutrition" onMouseClicked="#setToEmpty" prefHeight="394.0" prefWidth="1011.0" style="-fx-background-color: #fff;">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="512.0" minWidth="0.0" prefWidth="0.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1070.0" minWidth="10.0" prefWidth="1062.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="1070.0" minWidth="8.0" prefWidth="8.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="706.0" minHeight="10.0" prefHeight="706.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="660.0" minHeight="10.0" prefHeight="6.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <TableView fx:id="dishTable" prefHeight="352.0" prefWidth="772.0" GridPane.columnIndex="1">
+                    <columns>
+                        <TableColumn fx:id="groupc" prefWidth="141.0" text="Grupė" />
+                      <TableColumn fx:id="dishc" prefWidth="237.0" text="Patiekalo pavadinimas" />
+                      <TableColumn fx:id="kcalc" prefWidth="125.0" text="Kalorijų skaičius" />
+                        <TableColumn fx:id="proteinc" prefWidth="76.0" text="Baltymai" />
+                        <TableColumn fx:id="carbc" prefWidth="126.0" text="Angliavandeniai" />
+                        <TableColumn fx:id="fatc" prefWidth="86.0" text="Riebalai" />
+                    </columns>
+                     <GridPane.margin>
+                        <Insets left="270.0" top="370.0" />
+                     </GridPane.margin>
+                  </TableView>
+                  <Button mnemonicParsing="false" onAction="#addNewDish" prefWidth="167.0" text="Pridėti naują patiekalą" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets left="50.0" top="300.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <TextField fx:id="dishSearch" onKeyPressed="#searchDish" promptText="Patiekalo paieška" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets left="10.0" right="800.0" top="150.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Button mnemonicParsing="false" onAction="#mealPlan" style="-fx-background-color: transparent;" text="Sukurti mitybos planą" textFill="#4c99ff" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="20.0" left="500.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#loadDish" prefWidth="167.0" text="Atnaujinti lentelę" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets left="50.0" top="450.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Label text="KCAL" textFill="#4c99ff" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="600.0" left="555.0" />
+                     </GridPane.margin>
+                      <font>
+                          <Font name="System Bold" size="15.0" />
+                      </font>
+                  </Label>
+                  <Label text="Baltym. kiekis (g)" textFill="#4c99ff" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="600.0" left="620.0" />
+                     </GridPane.margin>
+                      <font>
+                      <Font name="System Bold" size="15.0" />
+                  </font>
+                  </Label>
+                  <Label text="Angl. kiekis (g)" textFill="#4c99ff" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="600.0" left="770.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label text="Riebal. kiekis (g)" textFill="#4c99ff" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="600.0" left="900.0" />
+                     </GridPane.margin>
+                      <font>
+                          <Font name="System Bold" size="15.0" />
+                      </font>
+                  </Label>
+                  <Label text="Kiekis (g)" textFill="#4c99ff" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="600.0" left="450.0" />
+                     </GridPane.margin>
+                      <font>
+                          <Font name="System Bold" size="15.0" />
+                      </font>
+                  </Label>
+                  <Label prefHeight="21.0" prefWidth="73.0" text="Produktas" textFill="#4c99ff" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="600.0" left="280.0" />
+                     </GridPane.margin>
+                      <font>
+                          <Font name="System Bold" size="15.0" />
+                      </font>
+                  </Label>
+                  <ComboBox fx:id="mealType" onAction="#mealTypeComboBox" prefHeight="31.0" prefWidth="191.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="120.0" left="220.0" />
+                     </GridPane.margin>
+                  </ComboBox>
+                  <ComboBox fx:id="mealGroup" onAction="#groupComboBox" onMouseClicked="#setToEmpty" prefHeight="31.0" prefWidth="179.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="520.0" left="10.0" />
+                     </GridPane.margin>
+                  </ComboBox>
+                  <Label text="Grupės" textFill="#4c99ff" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="600.0" left="70.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="dishComboBox" onKeyPressed="#loadDishInformation" onMouseClicked="#nutritionComboBox" prefHeight="31.0" prefWidth="191.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="520.0" left="220.0" />
+                     </GridPane.margin>
+                  </ComboBox>
+                  <TextField fx:id="gramsTextField" onAction="#grams" prefHeight="31.0" prefWidth="62.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="520.0" left="450.0" right="550.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Label fx:id="kcalLabel" prefHeight="21.0" prefWidth="50.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="520.0" left="550.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="proteinLabel" prefHeight="21.0" prefWidth="50.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="520.0" left="655.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="carbLabel" prefHeight="21.0" prefWidth="50.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="520.0" left="795.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="fatLabel" prefHeight="21.0" prefWidth="50.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="520.0" left="930.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <ComboBox fx:id="mealGroup1" onAction="#groupComboBox1" onMouseClicked="#setToEmpty" prefHeight="31.0" prefWidth="179.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="420.0" left="10.0" />
+                     </GridPane.margin>
+                  </ComboBox>
+                  <ComboBox fx:id="dishComboBox1" onKeyPressed="#loadDishInformation1" onMouseClicked="#nutritionComboBox1" prefHeight="31.0" prefWidth="191.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="420.0" left="220.0" />
+                     </GridPane.margin>
+                  </ComboBox>
+                  <TextField fx:id="gramsTextField1" onAction="#grams1" prefHeight="31.0" prefWidth="62.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="420.0" left="450.0" right="550.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Label fx:id="kcalLabel1" prefHeight="21.0" prefWidth="50.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="420.0" left="550.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="proteinLabel1" prefHeight="21.0" prefWidth="50.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="420.0" left="655.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="carbLabel1" prefHeight="21.0" prefWidth="50.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="420.0" left="795.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="fatLabel1" prefHeight="21.0" prefWidth="50.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="420.0" left="930.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="kcal" prefHeight="0.0" prefWidth="0.0" textFill="WHITE" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets top="600.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="protein" prefHeight="0.0" prefWidth="0.0" textFill="WHITE" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets top="600.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="carb" prefHeight="0.0" prefWidth="0.0" textFill="WHITE" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets top="600.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="fat" prefHeight="0.0" prefWidth="0.0" textFill="WHITE" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets top="600.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="kcal1" textFill="WHITE" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets top="600.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="protein1" textFill="WHITE" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets top="600.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="carb1" textFill="WHITE" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets top="600.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="fat1" textFill="WHITE" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets top="600.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <ComboBox fx:id="mealGroup2" onAction="#groupComboBox2" onMouseClicked="#setToEmpty" prefHeight="31.0" prefWidth="179.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="320.0" left="10.0" />
+                     </GridPane.margin>
+                  </ComboBox>
+                  <ComboBox fx:id="mealGroup3" onAction="#groupComboBox3" onMouseClicked="#setToEmpty" prefHeight="31.0" prefWidth="179.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="220.0" left="10.0" />
+                     </GridPane.margin>
+                  </ComboBox>
+                  <Label prefHeight="21.0" prefWidth="39.0" text="Viso:" textFill="#4c99ff" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="120.0" left="470.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="allKcal" alignment="CENTER" prefHeight="26.0" prefWidth="64.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="120.0" left="530.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="allProtein" alignment="CENTER" prefHeight="21.0" prefWidth="66.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="120.0" left="635.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="allCarb" alignment="CENTER" prefHeight="21.0" prefWidth="64.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="120.0" left="775.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="allFat" alignment="CENTER" prefHeight="21.0" prefWidth="64.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="120.0" left="910.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <ComboBox fx:id="dishComboBox2" onKeyPressed="#loadDishInformation2" onMouseClicked="#nutritionComboBox2" prefHeight="31.0" prefWidth="191.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="320.0" left="220.0" />
+                     </GridPane.margin>
+                  </ComboBox>
+                  <ComboBox fx:id="dishComboBox3" onKeyPressed="#loadDishInformation3" onMouseClicked="#nutritionComboBox3" prefHeight="31.0" prefWidth="191.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="220.0" left="220.0" />
+                     </GridPane.margin>
+                  </ComboBox>
+                  <TextField fx:id="gramsTextField2" onAction="#grams2" prefHeight="31.0" prefWidth="62.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="320.0" left="450.0" right="550.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="gramsTextField3" onAction="#grams3" prefHeight="31.0" prefWidth="62.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="220.0" left="450.0" right="550.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Label fx:id="kcalLabel3" prefHeight="21.0" prefWidth="50.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="220.0" left="550.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="proteinLabel2" prefHeight="21.0" prefWidth="50.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="320.0" left="655.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="proteinLabel3" prefHeight="21.0" prefWidth="50.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="220.0" left="655.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="carbLabel2" prefHeight="21.0" prefWidth="50.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="320.0" left="795.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="carbLabel3" prefHeight="21.0" prefWidth="50.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="220.0" left="795.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="fatLabel2" prefHeight="21.0" prefWidth="50.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="320.0" left="930.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="fatLabel3" prefHeight="21.0" prefWidth="50.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="220.0" left="930.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="kcalLabel2" prefHeight="21.0" prefWidth="50.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="320.0" left="550.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Valgymas" textFill="#4c99ff" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="120.0" left="130.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="kcal2" textFill="WHITE" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets top="600.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="protein2" textFill="WHITE" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets top="600.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="carb2" textFill="WHITE" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets top="600.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="fat2" textFill="WHITE" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets top="600.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="kcal3" textFill="WHITE" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets top="600.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="protein3" textFill="WHITE" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets top="600.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="carb3" textFill="WHITE" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets top="600.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="fat3" textFill="WHITE" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets top="600.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Button mnemonicParsing="false" onAction="#deleteDish" prefHeight="31.0" prefWidth="167.0" text="Ištrinti patiekalą" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets left="50.0" top="600.0" />
+                     </GridPane.margin></Button>
+                  <Label fx:id="dishName" prefHeight="21.0" prefWidth="0.0" text="Label" textFill="WHITE" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets top="600.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="nutritionID" prefHeight="21.0" prefWidth="0.0" textFill="WHITE" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets top="500.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="nutritionID1" textFill="WHITE" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets top="500.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="nutritionID2" textFill="WHITE" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets top="600.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="nutritionID3" textFill="WHITE" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets top="600.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="mealConfirmation" alignment="CENTER" prefHeight="25.0" prefWidth="233.0" textFill="#1fd000" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="20.0" left="800.0" />
+                     </GridPane.margin>
+                  </Label>
+               </children>
+            </GridPane>
+            <GridPane fx:id="gpClient" layoutX="254.0" layoutY="16.0" onMouseClicked="#empty" prefHeight="451.0" prefWidth="1034.0" style="-fx-background-color: #fff;">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1068.0" minWidth="10.0" prefWidth="1068.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="486.0" minWidth="2.0" prefWidth="2.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints maxHeight="392.0" minHeight="0.0" prefHeight="257.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="664.0" minHeight="10.0" prefHeight="302.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <StackPane prefHeight="313.0" prefWidth="1055.0" GridPane.rowIndex="1">
+                     <children>
+                        <GridPane fx:id="gpSize" prefHeight="393.0" prefWidth="1071.0" style="-fx-background-color: #fff;">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <TableView fx:id="sizeTable" prefHeight="298.0" prefWidth="1068.0">
+                                 <placeholder>
+                                    <Label text="Kūno matmenų lentelė tuščia" />
+                                 </placeholder>
+                                <columns>
+                                  <TableColumn fx:id="cdate" prefWidth="131.0" text="Išsaugojimo data" />
+                                  <TableColumn fx:id="kgc" prefWidth="53.0" text="KG" />
+                                    <TableColumn fx:id="shouldersc" prefWidth="59.0" text="Pečiai" />
+                                    <TableColumn fx:id="chestc" prefWidth="77.0" text="Krūtinė" />
+                                    <TableColumn fx:id="rbicepsc" prefWidth="92.0" text="D. Bicepsas" />
+                                    <TableColumn fx:id="lbicepsc" prefWidth="112.0" text="K. Bicepsas" />
+                                    <TableColumn fx:id="waistsc" prefWidth="129.0" text="Talija siauriausia" />
+                                    <TableColumn fx:id="waistbc" prefWidth="119.0" text="Talija plačiausia" />
+                                    <TableColumn fx:id="glutesc" prefWidth="98.0" text="Sėdmenys" />
+                                    <TableColumn fx:id="rthighc" prefWidth="98.0" text="D. Šlaunis" />
+                                    <TableColumn fx:id="lthighc" prefWidth="98.0" text="K. Šlaunis" />
+                                </columns>
+                              </TableView>
+                           </children>
+                           <padding>
+                              <Insets top="30.0" />
+                           </padding>
+                        </GridPane>
+                        <GridPane fx:id="gpPerformance" style="-fx-background-color: #fff;">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="377.0" minHeight="10.0" prefHeight="371.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="330.0" minHeight="1.0" prefHeight="7.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <TableView fx:id="performanceTable" prefHeight="254.0" prefWidth="1055.0">
+                                 <placeholder>
+                                    <Label text="Sporto pasiekimų lentelė tuščia" />
+                                 </placeholder>
+                                <columns>
+                                  <TableColumn fx:id="exerciseNamec" prefWidth="240.0" text="Pratimo pavadinimas" />
+                                  <TableColumn fx:id="setc" minWidth="7.0" prefWidth="108.0" text="Serijos" />
+                                    <TableColumn fx:id="repc" minWidth="7.0" prefWidth="180.0" text="Pakartojimai" />
+                                    <TableColumn fx:id="weightc" minWidth="7.0" prefWidth="145.0" text="Svoriai" />
+                                    <TableColumn fx:id="date" minWidth="7.0" prefWidth="194.0" text="Išsaugojimo data" />
+                                </columns>
+                                 <GridPane.margin>
+                                    <Insets left="100.0" right="100.0" top="30.0" />
+                                 </GridPane.margin>
+                              </TableView>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </StackPane>
+                  <TextField fx:id="search" onKeyPressed="#searchClient" prefHeight="31.0" prefWidth="190.0" promptText="Klientų paieška">
+                     <GridPane.margin>
+                        <Insets bottom="200.0" left="620.0" right="170.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TableView fx:id="data" prefHeight="329.0" prefWidth="598.0">
+                    <columns>
+                        <TableColumn fx:id="idc" minWidth="0.0" prefWidth="0.0" text="ID" />
+                      <TableColumn fx:id="namec" prefWidth="125.0" text="Vardas" />
+                      <TableColumn fx:id="surnamec" prefWidth="113.0" text="Pavardė" />
+                        <TableColumn fx:id="datec" prefWidth="126.0" text="Gimimo data" />
+                        <TableColumn fx:id="emailc" prefWidth="234.0" text="Elektroninis paštas" />
+                    </columns>
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                     <GridPane.margin>
+                        <Insets right="470.0" top="10.0" />
+                     </GridPane.margin>
+                  </TableView>
+                  <Button mnemonicParsing="false" onAction="#loadClientSize" prefHeight="31.0" prefWidth="229.0" text="Peržiūrėti kūno matmenis">
+                     <GridPane.margin>
+                        <Insets left="820.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="reviewClientPerformance" mnemonicParsing="false" onAction="#loadClientPerformance" text="Peržiūrėti sportinius pasiekimus">
+                     <GridPane.margin>
+                        <Insets bottom="100.0" left="820.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="reviewPerformance" mnemonicParsing="false" onAction="#clickClient" text="Sportiniai pasiekimai">
+                     <GridPane.margin>
+                        <Insets bottom="100.0" left="620.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="reviewSize" mnemonicParsing="false" onAction="#clickClient" prefHeight="31.0" prefWidth="160.0" text="Kūno matmenys">
+                     <GridPane.margin>
+                        <Insets left="620.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Label fx:id="clientGoal" prefHeight="21.0" prefWidth="213.0" textFill="#4c99ff">
+                     <GridPane.margin>
+                        <Insets left="620.0" top="130.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="clientGoalKg" prefHeight="21.0" prefWidth="238.0" textFill="#4c99ff">
+                     <GridPane.margin>
+                        <Insets left="620.0" top="200.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="checkMealPlan" prefHeight="21.0" prefWidth="290.0" textFill="#4c99ff">
+                     <GridPane.margin>
+                        <Insets left="620.0" top="270.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+         </children>
+      </StackPane>
+      <VBox layoutX="14.0" layoutY="14.0" onMouseClicked="#empty" prefHeight="726.0" prefWidth="230.0" style="-fx-background-color: #ebffd6; -fx-background-radius: 18 18 18 18;">
+         <children>
+            <Label alignment="CENTER" prefHeight="21.0" prefWidth="223.0" text="Pasirinkto kliento ID">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Label>
+            <Label fx:id="idLabel" alignment="CENTER" prefHeight="21.0" prefWidth="228.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin></Label>
+            <Button fx:id="buttonClient" mnemonicParsing="false" onAction="#click" prefHeight="69.0" prefWidth="257.0" style="-fx-background-color: #ebffd6; -fx-border-color: #fff;" text="Klientai">
+               <VBox.margin>
+                  <Insets top="120.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="buttonNutrition" mnemonicParsing="false" onAction="#click" prefHeight="69.0" prefWidth="257.0" style="-fx-background-color: #ebffd6; -fx-border-color: #fff;" text="Mityba">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#caloriesCounter" prefHeight="69.0" prefWidth="257.0" style="-fx-background-color: #ebffd6; -fx-border-color: #fff;" text="Kalorijų skaičiuoklė">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#KMI" prefHeight="69.0" prefWidth="257.0" style="-fx-background-color: ebffd6; -fx-border-color: #fff;" text="KMI skaičiuoklė">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Button>
+            <Label fx:id="coachID" text="Label" textFill="#ebffd6" />
+         </children>
+      </VBox>
+      <Button fx:id="logOutButton" layoutX="1271.0" layoutY="-1.0" mnemonicParsing="false" onAction="#logOut" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: transparent;" text="Atsijungti" textFill="#ff0000d9" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font></Button>
+   </children>
+</AnchorPane>

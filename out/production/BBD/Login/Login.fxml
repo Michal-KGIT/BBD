@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.net.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="383.0" prefWidth="365.0" style="-fx-background-color: #f0ffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Login.LoginController">
+   <children>
+      <TextField fx:id="email" layoutX="89.0" layoutY="106.0" promptText="El. pastas" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-prompt-text-fill: black;" />
+      <PasswordField fx:id="pass" layoutX="89.0" layoutY="183.0" promptText="Slaptažodis" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 2px 0px; -fx-prompt-text-fill: black;" />
+      <Button fx:id="loginButton" layoutX="89.0" layoutY="302.0" mnemonicParsing="false" onAction="#login" prefHeight="31.0" prefWidth="187.0" style="-fx-background-color: #2f2f2fa3; -fx-background-radius: 100; -fx-text-fill: white;" text="Prisijungti">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Button layoutX="237.0" layoutY="14.0" mnemonicParsing="false" onAction="#registration" style="-fx-background-color: transparent;" text="Registracija">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Label fx:id="error" layoutX="51.0" layoutY="244.0" prefHeight="21.0" prefWidth="263.0" textFill="RED">
+         <font>
+            <Font size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="741.0" prefWidth="1240.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.ClientController">
+   <children>
+      <VBox layoutX="9.0" layoutY="11.0" prefHeight="717.0" prefWidth="227.0" style="-fx-background-color: #f0ffff; -fx-background-radius: 18 18 18 18;">
+         <children>
+            <Label onMouseClicked="#update" text="Atnaujinti duomenis" textFill="#fc637c">
+               <VBox.margin>
+                  <Insets left="90.0" top="5.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="names" alignment="CENTER" prefHeight="67.0" prefWidth="238.0">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <AnchorPane prefHeight="91.0" prefWidth="227.0" style="-fx-background-color: #f0ffff; -fx-background-radius: 50 50 50 50;">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <children>
+                  <Label layoutX="142.0" layoutY="14.0" text="Svoris" textFill="DODGERBLUE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="194.0" layoutY="43.0" text="kg" textFill="#939393">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="weightClientLabel" layoutX="142.0" layoutY="43.0" prefHeight="21.0" prefWidth="40.0" text="0" />
+                  <Label layoutX="34.0" layoutY="14.0" text="Ūgis" textFill="DODGERBLUE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="heightClientLabel" layoutX="32.0" layoutY="45.0" prefHeight="21.0" prefWidth="43.0" text="0" AnchorPane.leftAnchor="32.0" />
+                  <Label layoutX="83.0" layoutY="43.0" text="cm" textFill="#939393">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Button fx:id="homeButton" mnemonicParsing="false" onAction="#choose" prefHeight="67.0" prefWidth="227.0" style="-fx-background-color: transparent; -fx-border-color: #fff;" text="Pradžia">
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="sizeButton" mnemonicParsing="false" onAction="#choose" prefHeight="67.0" prefWidth="227.0" style="-fx-background-color: transparent; -fx-border-color: #fff;" text="Kūno matmenys">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="performanceButton" mnemonicParsing="false" onAction="#choose" prefHeight="67.0" prefWidth="227.0" style="-fx-background-color: transparent; -fx-border-color: #fff;" text="Sportiniai pasiekimai">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#caloriesCounter" prefHeight="67.0" prefWidth="227.0" style="-fx-background-color: transparent; -fx-border-color: #fff;" text="Kalorijų skaičiuoklė">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#KMI" prefHeight="67.0" prefWidth="227.0" style="-fx-background-color: transparent; -fx-border-color: #fff;" text="KMI skaiciuoklė">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Button>
+            <Label fx:id="idLabel" prefHeight="21.0" prefWidth="24.0" textFill="WHITE" underline="true" wrapText="true">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="id" prefHeight="19.0" prefWidth="27.0" textFill="WHITE" />
+            <Label fx:id="weightSize" prefHeight="21.0" prefWidth="0.0" textFill="WHITE" />
+         </children>
+      </VBox>
+      <StackPane layoutX="245.0" layoutY="43.0" prefHeight="698.0" prefWidth="998.0">
+         <children>
+            <GridPane fx:id="gpNutrition" style="-fx-background-color: #fff;">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Label prefHeight="43.0" prefWidth="218.0" text="Mitybos planas" textFill="DODGERBLUE">
+                     <font>
+                        <Font name="System Bold" size="29.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="620.0" left="255.0" />
+                     </GridPane.margin></Label>
+                  <Button mnemonicParsing="false" onAction="#loadFullMealPlan" prefHeight="31.0" prefWidth="938.0" text="Įkelti visą mitybos planą">
+                     <GridPane.margin>
+                        <Insets bottom="320.0" left="70.0" right="730.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#tableViewToPDFMealPlan" prefWidth="200.0" text="Atspausdinti mitybos planą">
+                     <GridPane.margin>
+                        <Insets left="65.0" top="380.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Label text="Pasirinkti mitybos plano dalį">
+                     <GridPane.margin>
+                        <Insets bottom="150.0" left="65.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <ComboBox fx:id="type" onAction="#loadGroupMeal" onMouseClicked="#fillMealDateCombo" prefHeight="31.0" prefWidth="181.0">
+                     <GridPane.margin>
+                        <Insets bottom="85.0" left="70.0" />
+                     </GridPane.margin>
+                  </ComboBox>
+                  <TableView fx:id="mealPlan" prefHeight="423.0" prefWidth="661.0">
+                     <placeholder>
+                        <Label text="Mitybos planas nėra sukurtas arba nėra tokios mitybos plano dalies" />
+                     </placeholder>
+                    <columns>
+                      <TableColumn fx:id="groupc" prefWidth="156.0" text="Valgymas" />
+                      <TableColumn fx:id="dishc" prefWidth="196.0" text="Patiekalo pavadinimas" />
+                        <TableColumn fx:id="gramsc" prefWidth="81.0" text="Gramai" />
+                        <TableColumn fx:id="createDatec" prefWidth="189.0" text="Sukūrimo data" />
+                    </columns>
+                     <GridPane.margin>
+                        <Insets bottom="30.0" left="340.0" right="20.0" top="80.0" />
+                     </GridPane.margin>
+                  </TableView>
+                  <ComboBox fx:id="mealPlanDate" onAction="#displayMealPlanDate" onMouseClicked="#fillMealDateCombo" prefHeight="31.0" prefWidth="181.0">
+                     <GridPane.margin>
+                        <Insets left="70.0" top="170.0" />
+                     </GridPane.margin>
+                  </ComboBox>
+                  <Label text="Pasirinkti mitybos plano sukūrimo datą">
+                     <GridPane.margin>
+                        <Insets left="30.0" top="90.0" />
+                     </GridPane.margin>
+                  </Label>
+               </children>
+               <StackPane.margin>
+                  <Insets />
+               </StackPane.margin>
+            </GridPane>
+            <GridPane fx:id="gpPerformance" prefHeight="728.0" prefWidth="998.0" style="-fx-background-color: #fff;">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="493.0" minWidth="0.0" prefWidth="0.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="998.0" minWidth="10.0" prefWidth="998.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="666.0" minHeight="10.0" prefHeight="666.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="500.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="363.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <TextField fx:id="exerciseName" prefHeight="31.0" prefWidth="250.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="575.0" left="210.0" right="530.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="repCounts" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="450.0" left="210.0" right="530.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="setCounts" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="325.0" left="210.0" right="530.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="weightKg" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="200.0" left="210.0" right="530.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <DatePicker fx:id="dateAdd" prefHeight="31.0" prefWidth="501.0" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="75.0" left="210.0" right="530.0" />
+                     </GridPane.margin>
+                  </DatePicker>
+                  <Button mnemonicParsing="false" onAction="#savePerformance" prefWidth="100.0" text="Išsaugoti" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="400.0" left="800.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <TableView fx:id="performanceTableView" prefHeight="261.0" prefWidth="998.0" style="-fx-background-color: transparent;" GridPane.columnIndex="1">
+                    <placeholder>
+                       <Label text="Nėra išsaugota sportinių pasiekimų" />
+                    </placeholder>
+                     <columns>
+                        <TableColumn fx:id="idcperformance" minWidth="0.0" prefWidth="0.0" text="ID" />
+                      <TableColumn fx:id="exerciseNamec" prefWidth="249.0" text="Pratimo pavadinimas" />
+                        <TableColumn fx:id="repc" prefWidth="178.0" text="Pakartojimai" />
+                        <TableColumn fx:id="setsc" prefWidth="159.0" text="Serijos" />
+                        <TableColumn fx:id="weightc" prefWidth="204.0" text="Svoriai" />
+                        <TableColumn fx:id="datec" prefWidth="170.0" text="Data" />
+                    </columns>
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="350.0" />
+                     </GridPane.margin>
+                  </TableView>
+                  <Button mnemonicParsing="false" onAction="#deletePerformance" prefWidth="100.0" text="Ištrinti" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="75.0" left="800.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#updatePerformance" prefWidth="100.0" text="Atnaujinti" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="250.0" left="800.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Label fx:id="idPerformance" prefHeight="34.0" prefWidth="0.0" style="-fx-background-color: #fff;" textFill="WHITE" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Pratimo pavadinimas" textFill="DODGERBLUE" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="575.0" left="50.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label text="Pakartojimų skaičius" textFill="DODGERBLUE" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="450.0" left="55.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label prefHeight="25.0" prefWidth="104.0" text="Serijų skaičius" textFill="DODGERBLUE" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="325.0" left="100.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label prefHeight="25.0" prefWidth="112.0" text="Naudoti svoriai" textFill="DODGERBLUE" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="200.0" left="90.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label prefHeight="25.0" prefWidth="126.0" text="Išsaugojimo data" textFill="DODGERBLUE" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="75.0" left="80.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField fx:id="searchPerformance" onKeyPressed="#searchPerformance" GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="250.0" left="530.0" right="260.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Label prefHeight="25.0" prefWidth="58.0" text="Paieška" textFill="DODGERBLUE" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="320.0" left="600.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="46.0" prefWidth="526.0" text="Sportiniai pasiekimai" textFill="DODGERBLUE" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="System Bold" size="31.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="580.0" left="450.0" />
+                     </GridPane.margin>
+                  </Label>
+               </children>
+            </GridPane>
+            <GridPane fx:id="gpSize" style="-fx-background-color: #fff;">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="493.0" minWidth="0.0" prefWidth="0.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="998.0" minWidth="10.0" prefWidth="998.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="254.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="666.0" minHeight="10.0" prefHeight="666.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="241.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label prefHeight="21.0" prefWidth="45.0" text="Pečiai" textFill="DODGERBLUE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="460.0" left="470.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label text="Krūtinė" textFill="DODGERBLUE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="315.0" left="460.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="21.0" prefWidth="104.0" text="Dešinys bicepsas" textFill="DODGERBLUE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="170.0" left="850.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="21.0" prefWidth="98.0" text="Kairys bicepsas" textFill="DODGERBLUE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="160.0" left="425.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="21.0" prefWidth="141.0" text="Talijos plačiausia vieta" textFill="DODGERBLUE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="50.0" left="838.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="21.0" prefWidth="143.0" text="Talijos siauriausia vieta" textFill="DODGERBLUE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="380.0" top="240.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label text="Sėdmenys" textFill="DODGERBLUE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="850.0" top="270.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label text="Dešinė šlaunis" textFill="DODGERBLUE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="840.0" top="400.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label text="Kairė šlaunis" textFill="DODGERBLUE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="440.0" top="390.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="comboboxData" onAction="#loadSize" onMouseClicked="#fillComboBox" prefHeight="31.0" prefWidth="174.0" promptText="Pasirinkti datą" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="100.0" top="100.0" />
+                     </GridPane.margin>
+                  </ComboBox>
+                  <ImageView fx:id="bodyImage" fitHeight="557.0" fitWidth="334.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="520.0" top="100.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <Label fx:id="shoulderLabel" alignment="CENTER" prefHeight="21.0" prefWidth="68.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="420.0" left="458.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="chestLabel" alignment="CENTER" prefHeight="21.0" prefWidth="69.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="275.0" left="450.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lBicepsLabel" alignment="CENTER" prefHeight="21.0" prefWidth="97.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="120.0" left="425.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="waistSLabel" alignment="CENTER" prefHeight="21.0" prefWidth="141.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="380.0" top="280.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lThighLabel" alignment="CENTER" prefHeight="21.0" prefWidth="75.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="440.0" top="430.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="rBicepsLabel" alignment="CENTER" prefHeight="21.0" prefWidth="98.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="130.0" left="850.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="waistBLabel" alignment="CENTER" prefHeight="21.0" prefWidth="137.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="10.0" left="838.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="glutesLabel" alignment="CENTER" prefHeight="21.0" prefWidth="63.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="850.0" top="310.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="rThighLabel" alignment="CENTER" prefHeight="21.0" prefWidth="89.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="840.0" top="440.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label text="Kūno svoris" textFill="DODGERBLUE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="600.0" left="550.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label text="KMI " textFill="DODGERBLUE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="600.0" left="800.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="370.0" text="Kūno matmenys" textFill="DODGERBLUE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="350.0" left="10.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold" size="34.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="kgLabel" prefHeight="21.0" prefWidth="61.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="600.0" left="625.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="kmiLabel" prefHeight="21.0" prefWidth="42.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="600.0" left="830.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Button mnemonicParsing="false" onAction="#addSize" text="Pridėti kūno matmenis" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets bottom="100.0" left="100.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
+            <GridPane fx:id="gpEmpty" prefHeight="664.0" prefWidth="983.0" style="-fx-background-color: #fff;">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <LineChart fx:id="lineChart" animated="false" legendVisible="false" style="-fx-background-color: #fff;" GridPane.rowIndex="1">
+                    <xAxis>
+                      <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis autoRanging="false" lowerBound="40.0" minorTickVisible="false" prefHeight="329.0" prefWidth="28.0" side="LEFT" tickLabelFill="#fc637c" tickLength="6.0" upperBound="150.0">
+                           <tickLabelFont>
+                              <Font size="14.0" />
+                           </tickLabelFont>
+                        </NumberAxis>
+                    </yAxis>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </LineChart>
+                  <AnchorPane prefHeight="297.0" prefWidth="382.0" style="-fx-background-color: #5fc6ff; -fx-background-radius: 18 18 18 18;">
+                     <GridPane.margin>
+                        <Insets bottom="35.0" left="10.0" right="520.0" top="25.0" />
+                     </GridPane.margin>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <children>
+                        <Label layoutX="170.0" layoutY="39.0" text="Tikslas" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="234.0" layoutY="82.0" prefHeight="30.0" prefWidth="126.0" text="Iki tikslo liko" textFill="#5fc6ff" AnchorPane.leftAnchor="234.0" AnchorPane.rightAnchor="93.0" AnchorPane.topAnchor="82.0">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="kgGoal" alignment="CENTER" layoutX="234.0" layoutY="161.0" prefHeight="30.0" prefWidth="126.0" text="-" textFill="#5fc6ff" AnchorPane.leftAnchor="234.0" AnchorPane.topAnchor="162.0">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="38.0" layoutY="125.0" onMouseClicked="#newGoal" text="Įrašyti tikslą" textFill="WHITE" AnchorPane.leftAnchor="38.0" AnchorPane.topAnchor="122.0">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="reachGoal" alignment="CENTER" layoutX="234.0" layoutY="125.0" prefHeight="30.0" prefWidth="126.0" text="-" textFill="#5fc6ff" AnchorPane.leftAnchor="234.0" AnchorPane.topAnchor="122.0">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="goal" layoutX="2.0" layoutY="273.0" prefHeight="21.0" prefWidth="36.0" text="0" textFill="#5fc6ff" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="292.0" prefWidth="434.0" style="-fx-background-color: #ff6b6b; -fx-background-radius: 18 18 18 18;">
+                     <GridPane.margin>
+                        <Insets bottom="22.0" left="520.0" right="10.0" top="15.0" />
+                     </GridPane.margin>
+                     <children>
+                        <Label layoutX="14.0" layoutY="14.0" text="Mityba" textFill="WHITE" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
+                           <font>
+                              <Font name="System Bold" size="35.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="41.0" layoutY="139.0" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font></Label>
+                        <Button fx:id="nutritionButton" layoutX="20.0" layoutY="119.0" mnemonicParsing="false" onAction="#choose" prefHeight="67.0" prefWidth="413.0" style="-fx-background-color: transparent;" text="Peržiūrėti sukurtą mitybos planą" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </GridPane>
+         </children>
+         <padding>
+            <Insets bottom="15.0" right="15.0" />
+         </padding>
+      </StackPane>
+      <Button fx:id="logOutButton" layoutX="1164.0" layoutY="14.0" mnemonicParsing="false" onAction="#logOut" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: transparent;" text="Atsijungti" textFill="RED" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
